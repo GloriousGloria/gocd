@@ -10,7 +10,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
-type ServiceDeclarationSpec struct {
+type ServiceRequestSpec struct {
 	Maintainer         string   `json:"maintainer"`
 	Environment        string   `json:"environment"`
 	ImageName          string   `json:"imagename"`
@@ -27,10 +27,10 @@ type ServiceDeclarationSpec struct {
 }
 
 // deepcopy
-func (in *ServiceDeclaration) DeepCopyInto(out *ServiceDeclaration) {
+func (in *ServiceRequest) DeepCopyInto(out *ServiceRequest) {
 	out.TypeMeta = in.TypeMeta
 	out.ObjectMeta = in.ObjectMeta
-	out.Spec = ServiceDeclarationSpec{
+	out.Spec = ServiceRequestSpec{
 		Maintainer:         in.Spec.Maintainer,
 		Environment:        in.Spec.Environment,
 		ImageName:          in.Spec.ImageName,
@@ -46,30 +46,30 @@ func (in *ServiceDeclaration) DeepCopyInto(out *ServiceDeclaration) {
 
 // ----------------------------------------------------
 // kubernetes dependencies
-type ServiceDeclaration struct {
+type ServiceRequest struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ServiceDeclarationSpec `json:"spec"`
+	Spec              ServiceRequestSpec `json:"spec"`
 }
 
-type ServiceDeclarationList struct {
+type ServiceRequestList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ServiceDeclaration `json:"items"`
+	Items           []ServiceRequest `json:"items"`
 }
 
-func (in *ServiceDeclaration) DeepCopyObject() runtime.Object {
-	out := ServiceDeclaration{}
+func (in *ServiceRequest) DeepCopyObject() runtime.Object {
+	out := ServiceRequest{}
 	in.DeepCopyInto(&out)
 	return &out
 }
 
-func (in *ServiceDeclarationList) DeepCopyObject() runtime.Object {
-	out := ServiceDeclarationList{}
+func (in *ServiceRequestList) DeepCopyObject() runtime.Object {
+	out := ServiceRequestList{}
 	out.TypeMeta = in.TypeMeta
 	out.ListMeta = in.ListMeta
 	if in.Items != nil {
-		out.Items = make([]ServiceDeclaration, len(in.Items))
+		out.Items = make([]ServiceRequest, len(in.Items))
 		for i := range in.Items {
 			in.Items[i].DeepCopyInto(&out.Items[i])
 		}
@@ -80,20 +80,20 @@ func (in *ServiceDeclarationList) DeepCopyObject() runtime.Object {
 // ----------------------------------------------------
 // helper functions
 
-const _SERVICEDECLARATION_STRING string = "servicedeclarations"
+const _SERVICEREQUEST_STRING string = "servicerequests"
 
 // list all existing service declarations
-func ListServiceDeclarations() (sdl ServiceDeclarationList, err error) {
-	if err = operator.CRD().Get().Resource(_SERVICEDECLARATION_STRING).Do(context.TODO()).Into(&sdl); err != nil {
-		err = fmt.Errorf("[%s]:ListServiceDeclarations() error listing servicedeclarations: %#v", _SERVICEDECLARATION_STRING, err)
+func ListServiceRequests() (sdl ServiceRequestList, err error) {
+	if err = operator.CRD().Get().Resource(_SERVICEREQUEST_STRING).Do(context.TODO()).Into(&sdl); err != nil {
+		err = fmt.Errorf("[%s]:ListServiceRequests() error listing servicerequests: %#v", _SERVICEREQUEST_STRING, err)
 	}
 	return
 }
 
 // get a specific servicedeclaration
-func GetServiceDeclaration(namespace, name string) (sd ServiceDeclaration, err error) {
-	if err = operator.CRD().Get().Resource(_SERVICEDECLARATION_STRING).Namespace(namespace).Name(name).Do(context.TODO()).Into(&sd); err != nil {
-		err = fmt.Errorf("[%s]:GetServiceDeclaration(%s, %s) error listing servicedeclarations: %#v", _SERVICEDECLARATION_STRING, namespace, name, err)
+func GetServiceRequest(namespace, name string) (sd ServiceRequest, err error) {
+	if err = operator.CRD().Get().Resource(_SERVICEREQUEST_STRING).Namespace(namespace).Name(name).Do(context.TODO()).Into(&sd); err != nil {
+		err = fmt.Errorf("[%s]:GetServiceRequest(%s, %s) error listing servicerequests: %#v", _SERVICEREQUEST_STRING, namespace, name, err)
 	}
 	return
 }

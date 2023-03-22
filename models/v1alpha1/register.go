@@ -25,8 +25,8 @@ var (
 func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(
 		SchemeGroupVersion,
-		&ServiceDeclarationList{},
-		&ServiceDeclaration{},
+		&ServiceRequestList{},
+		&ServiceRequest{},
 		&InstallResourceList{},
 		&InstallResource{},
 	)

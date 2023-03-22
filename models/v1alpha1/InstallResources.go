@@ -120,7 +120,7 @@ func PushInstallResource(new_IR InstallResource) (ir InstallResource, err error)
 }
 
 // delete an installresource
-func DeleteInstallResource(_namespace, _name string) (ir InstallResource, err error) {
+func DeleteInstallResource(_namespace, _name string) (err error) {
 	if ir_k8s, e := GetInstallResource(_namespace, _name); e == nil {
 		if ir_k8s.APIVersion == ApiVersion() {
 			if err = operator.CRD().Delete().Resource(_INSTALLRESOURCE_STRING).Namespace(_namespace).Name(_name).Do(context.TODO()).Error(); err != nil {
