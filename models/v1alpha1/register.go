@@ -3,7 +3,7 @@ package v1alpha1
 import (
 	"fmt"
 
-	"github.com/GloriousGloria/gocd/models"
+	"github.com/gloriousgloria/gocd/models"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
