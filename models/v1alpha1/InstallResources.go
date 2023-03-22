@@ -25,6 +25,9 @@ type GitlabPointerStruct struct {
 	GitlabAPIV4 string `json:"gitlabapiv4"`
 	ProjectID   int    `json:"projectid"`
 	AccessToken string `json:"accesstoken"`
+	Author      string `json:"author"`
+	Mail        string `json:"mail"`
+	Branch      string `json:"branch"`
 	File        string `json:"file"`
 }
 

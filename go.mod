@@ -2,9 +2,7 @@ module github.com/gloriousgloria/gocd
 
 go 1.19
 
-require (
-	k8s.io/apimachinery v0.26.3
-)
+require k8s.io/apimachinery v0.26.3
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

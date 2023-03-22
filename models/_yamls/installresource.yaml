@@ -52,7 +52,14 @@ spec:
                   type: array
                   items:
                     type: object
-                    required: ["gitlabapiv4", "projectid", "accesstoken", "file"]
+                    required: 
+                      - "gitlabapiv4"
+                      - "projectid" 
+                      - "accesstoken"
+                      - "file"
+                      - "author"
+                      - "mail"
+                      - "branch"
                     properties:
                       gitlabapiv4:
                         type: string
@@ -61,5 +68,11 @@ spec:
                       accesstoken: 
                         type: string
                       file: 
+                        type: string
+                      author: 
+                        type: string
+                      mail: 
+                        type: string
+                      branch: 
                         type: string
 
