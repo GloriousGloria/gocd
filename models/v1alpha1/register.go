@@ -29,6 +29,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&ServiceRequest{},
 		&InstallResourceList{},
 		&InstallResource{},
+		&TemplateSetList{},
+		&TemplateSet{},
 	)
 
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
