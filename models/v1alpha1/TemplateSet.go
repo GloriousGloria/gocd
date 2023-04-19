@@ -78,7 +78,7 @@ func GetTemplateSet(namespace, name string) (sd TemplateSet, err error) {
 }
 
 // get templatesets by labels
-func GetTemplateByLabels(namespace string, labels map[string]string) (sd TemplateSet, err error) {
+func GetTemplateByLabels(labels map[string]string) (sd TemplateSet, err error) {
 	var _list TemplateSetList
 	if _list, err = ListTemplateSets(); err == nil {
 		// check a specific template
