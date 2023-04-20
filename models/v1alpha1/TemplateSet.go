@@ -78,37 +78,22 @@ func GetTemplateSet(namespace, name string) (sd TemplateSet, err error) {
 }
 
 // get templatesets by labels
-func GetTemplateByLabels(labels map[string]string) (sd TemplateSet, err error) {
+func GetTemplateByLabels(labelIdentifier string) (sd TemplateSet, err error) {
 	var _list TemplateSetList
 	if _list, err = ListTemplateSets(); err == nil {
 		// check a specific template
-		var totalEqual bool = false
+		var equals bool = false
 		for _, item := range _list.Items {
-			var equals bool = true
 
-			// check the labels
-			for lblKey := range labels {
-
-				// check if the requested label exists in the item from k8s
-				if _, ok := item.Labels[lblKey]; !ok {
-					equals = false
-					break
-				}
-
-				if labels[lblKey] != item.Labels[lblKey] {
-					equals = false
-					break
-				}
-			}
-
+			// check the request
 			// if the items equal, the for loop will be broken and the current sd will be returned
-			if equals {
+			if labelIdentifier == item.Labels["template.identifier/flags"] {
 				sd = item
-				totalEqual = true
+				equals = true
 				break
 			}
 		}
-		if !totalEqual {
+		if !equals {
 			err = fmt.Errorf("there is no templateset, which matches the required labels")
 		}
 	}
