@@ -3,6 +3,7 @@ package v1alpha1
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/jnnkrdb/k8s/operator"
 
@@ -87,7 +88,7 @@ func GetTemplateByLabels(labelIdentifier string) (sd TemplateSet, err error) {
 
 			// check the request
 			// if the items equal, the for loop will be broken and the current sd will be returned
-			if labelIdentifier == item.Labels["template.identifier/flags"] {
+			if strings.Contains(item.Labels["template.identifier/flags"], labelIdentifier) {
 				sd = item
 				equals = true
 				break
