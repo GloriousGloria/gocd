@@ -5,8 +5,8 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 type InstallResource struct {
 	// meta specs
 	ID          primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	ObjID       string             `bson:"objid" json:"objid"`
-	ServiceName string             `bson:"servicename" json:"servicename"`
-	Environment string             `bson:"environment" json:"environment"`
-	Delete      bool               `bson:"delete" json:"delete"`
+	ObjID       string             `bson:"objid,omitempty" json:"objid"`
+	ServiceName string             `bson:"servicename,omitempty" json:"servicename"`
+	Environment string             `bson:"environment,omitempty" json:"environment"`
+	Delete      bool               `bson:"delete,omitempty" json:"delete"`
 }
