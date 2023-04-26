@@ -8,6 +8,7 @@ type ServiceDeclaration struct {
 	Name        string             `bson:"name,omitempty" json:"name"`
 	Description string             `bson:"description,omitempty" json:"description"`
 	ApiVersion  string             `bson:"apiversion,omitempty" json:"apiversion"`
+	Installed   bool               `bson:"installed,omitempty" json:"installed"`
 
 	// deployment specs
 	Maintainer         string   `bson:"maintainer,omitempty" json:"maintainer"`
