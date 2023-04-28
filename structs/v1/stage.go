@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	ak "github.com/jnnkrdb/gomw/middlewares/security/authorization/apikey"
 )
 
 type EnvironmentList map[string]Environment
@@ -19,7 +21,7 @@ type Environment struct {
 func (envList *EnvironmentList) GetFrom(url string, apikey string) (err error) {
 	var request *http.Request
 	if request, err = http.NewRequest(http.MethodGet, url, nil); err == nil {
-		request.Header.Set("X-SEC-APIKEY", apikey)
+		ak.SetAPIKeyForRequest(request)
 		var response *http.Response
 		if response, err = http.DefaultClient.Do(request); err == nil {
 			defer response.Body.Close()
