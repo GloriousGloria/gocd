@@ -6,9 +6,6 @@ type InstallResource struct {
 	// meta specs
 	ID                    primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	ObjID                 string             `bson:"objid,omitempty" json:"objid"`
-	ServiceName           string             `bson:"servicename,omitempty" json:"servicename"`
-	Environment           string             `bson:"environment,omitempty" json:"environment"`
-	Delete                bool               `bson:"delete,omitempty" json:"delete"`
 	AdditionalInformation struct {
 		RelatedObjects []RelatedObject `bson:"relatedobjects,omitempty" json:"relatedobjects"`
 		GitPointers    []GitPointer    `bson:"gitpointers,omitempty" json:"gitpointers"`
