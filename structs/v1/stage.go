@@ -11,7 +11,6 @@ import (
 type EnvironmentList []Environment
 
 type Environment struct {
-	ID                string `json:"id"`
 	Name              string `json:"name"`
 	ClusterAPI        string `json:"clusterapi"`
 	AppendSuffix      bool   `json:"appendsuffix"`
@@ -39,7 +38,7 @@ func (envList *EnvironmentList) GetFrom(url string, apikey string) (err error) {
 // check the existance of a specific stage
 func (el EnvironmentList) Check(environment string) bool {
 	for i := range el {
-		if el[i].ID == environment {
+		if el[i].Name == environment {
 			return true
 		}
 	}
