@@ -35,3 +35,13 @@ func (envList *EnvironmentList) GetFrom(url string, apikey string) (err error) {
 	}
 	return
 }
+
+// check the existance of a specific stage
+func (el EnvironmentList) Check(environment string) bool {
+	for i := range el {
+		if el[i].ID == environment {
+			return true
+		}
+	}
+	return false
+}
