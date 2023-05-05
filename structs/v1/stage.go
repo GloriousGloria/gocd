@@ -13,6 +13,7 @@ type EnvironmentList []Environment
 type Environment struct {
 	Name              string `json:"name"`
 	ClusterAPI        string `json:"clusterapi"`
+	Subdomain         string `json:"subdomain"`
 	AppendSuffix      bool   `json:"appendsuffix"`
 	UseRegexSubdomain bool   `json:"useregexsubdomain"`
 }
@@ -36,7 +37,7 @@ func (envList *EnvironmentList) GetFrom(url string, apikey string) (err error) {
 }
 
 // check the existance of a specific stage
-func (el EnvironmentList) Check(environment string) bool {
+func (el EnvironmentList) Contains(environment string) bool {
 	for i := range el {
 		if el[i].Name == environment {
 			return true
