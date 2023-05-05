@@ -8,9 +8,10 @@ import (
 	ak "github.com/jnnkrdb/gomw/middlewares/security/authorization/apikey"
 )
 
-type EnvironmentList map[string]Environment
+type EnvironmentList []Environment
 
 type Environment struct {
+	ID                string `json:"id"`
 	Name              string `json:"name"`
 	ClusterAPI        string `json:"clusterapi"`
 	AppendSuffix      bool   `json:"appendsuffix"`
